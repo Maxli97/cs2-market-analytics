@@ -42,6 +42,21 @@ OpenSkin API, and AWS.
 4. Record important architecture decisions in
    docs/DECISIONS.md when necessary.
 
+## Git Workflow
+- The user authorizes automatic commit and push after each requested task.
+- Run relevant checks and update root STATUS.md before committing.
+- Commit only changes related to the task with a clear commit message.
+- Push the completed task commit to origin/main automatically.
+- Verify origin points to https://github.com/Maxli97/cs2-market-analytics.git
+  and the current branch is main before committing or pushing. Report a mismatch
+  instead of switching branches or changing remotes automatically.
+- Do not commit credentials, .env files, or raw API datasets.
+- Never force-push or overwrite unrelated user changes.
+- If checks fail, authentication fails, or remote changes prevent a normal push,
+  report the issue rather than forcing synchronization.
+- Confirm the push succeeded and include the commit ID in the completion summary.
+- This authorization does not authorize AWS deployment.
+
 ## Communication
 - Explain concepts in Chinese.
 - Keep code and technical identifiers in English.

@@ -9,6 +9,9 @@ production ingestion is not implemented. No AWS resources created or deployed.
 
 ## Verified progress
 
+- Configured AGENTS.md to commit and push completed tasks to origin/main after
+  relevant checks, under the user's standing authorization. Confirmed the local
+  main branch and origin URL for Maxli97/cs2-market-analytics.
 - Unified progress tracking in root STATUS.md after the user removed the redundant
   docs entry point; updated AGENTS.md and the documentation decision accordingly.
 - Read AGENTS.md and README.md; inspected the initially empty src/ and test/.
