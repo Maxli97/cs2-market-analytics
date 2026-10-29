@@ -1,0 +1,941 @@
+{
+  "started_at_utc": "2026-10-29T03:39:14.819058+00:00",
+  "base_url": "https://api.openskin.dev",
+  "coverage_definition": "Positive finite ask / unique bulk names; presence alone is not a price.",
+  "requests": [
+    {
+      "label": "health",
+      "url": "https://api.openskin.dev/health",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:15.478836+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.643132,
+      "download_bytes": 183,
+      "error": null,
+      "body_sha256": "398caa9ebd16591c5fe8c0ccc5e25b837ea0100d9bb5de439705d664823511dd",
+      "saved_body_bytes": 183,
+      "decoded_bytes": 391,
+      "gzip_body": true,
+      "top_level_keys": [
+        "status",
+        "sources",
+        "stats"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:16 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "spec_server_health",
+      "url": "https://api-v2.openskin.dev/health",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:16.195825+00:00",
+      "curl_exit_code": 0,
+      "http_status": 503,
+      "elapsed_seconds": 0.439813,
+      "download_bytes": 196,
+      "error": null,
+      "body_sha256": "8dec72857ef6b449f81ad35c0c662dc2610a0f4c37e416e5aa2a842edb3ebfad",
+      "saved_body_bytes": 196,
+      "decoded_bytes": 427,
+      "gzip_body": true,
+      "top_level_keys": [
+        "status",
+        "sources",
+        "stats"
+      ],
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 29 Oct 2026 03:39:17 GMT",
+        "content-length": "196"
+      }
+    },
+    {
+      "label": "items_page_1",
+      "url": "https://api.openskin.dev/v1/items?limit=500&page=1",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:16.779161+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.306558,
+      "download_bytes": 26049,
+      "error": null,
+      "body_sha256": "a0c96cf1539a17ca43a5c472518462ce51aee8cb33e1546e11409371560db95c",
+      "saved_body_bytes": 26049,
+      "decoded_bytes": 223790,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "page",
+        "limit",
+        "total"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:17 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "items_last_page",
+      "url": "https://api.openskin.dev/v1/items?limit=500&page=77",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:17.582149+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.517967,
+      "download_bytes": 2770,
+      "error": null,
+      "body_sha256": "3ff7015b0310d65752cd6fa7b10d37bf3c478c1229650b90556c87eaa9eaf2be",
+      "saved_body_bytes": 2770,
+      "decoded_bytes": 19900,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "page",
+        "limit",
+        "total"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:18 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "items_stattrak",
+      "url": "https://api.openskin.dev/v1/items?stattrak=true&limit=1",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:18.207756+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.348188,
+      "download_bytes": 424,
+      "error": null,
+      "body_sha256": "1e8fb0241487d5e7e1cb13e620371919c48e9749252e41aeae154f98ee3590bd",
+      "saved_body_bytes": 424,
+      "decoded_bytes": 526,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "page",
+        "limit",
+        "total"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:19 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "items_souvenir",
+      "url": "https://api.openskin.dev/v1/items?souvenir=true&limit=1",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:18.704928+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.221966,
+      "download_bytes": 402,
+      "error": null,
+      "body_sha256": "a70f34b49585c276b7dd454fd5d1647dda04acd9414807beb262b3c6c3457006",
+      "saved_body_bytes": 402,
+      "decoded_bytes": 497,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "page",
+        "limit",
+        "total"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:19 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single",
+      "url": "https://api.openskin.dev/v1/prices?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:26.202222+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 7.219407,
+      "download_bytes": 1140,
+      "error": null,
+      "body_sha256": "aed20efeda1d21c2a0092a10e33de56e092067e45aa47c1817b3684601703a14",
+      "saved_body_bytes": 1140,
+      "decoded_bytes": 2436,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "icon_url",
+        "prices",
+        "links",
+        "lowest_ask",
+        "metrics",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:27 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single_steam",
+      "url": "https://api.openskin.dev/v1/prices/steam?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:26.666774+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.189491,
+      "download_bytes": 346,
+      "error": null,
+      "body_sha256": "2d55e198f961167048ebcdddeaddc05bc3ca61895c4e40bfe5e658f1a77214ff",
+      "saved_body_bytes": 346,
+      "decoded_bytes": 580,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "marketplace",
+        "bid",
+        "ask",
+        "median",
+        "volume_24h",
+        "buy_order_count",
+        "sell_order_count",
+        "spread",
+        "slippage",
+        "price_impact",
+        "liquidity_score",
+        "volatility",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:27 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single_skinport",
+      "url": "https://api.openskin.dev/v1/prices/skinport?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:27.188506+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.245066,
+      "download_bytes": 266,
+      "error": null,
+      "body_sha256": "c7a38d7f28c79be29a1215950910c02fad997875ea0a6949edab20e9161cf809",
+      "saved_body_bytes": 266,
+      "decoded_bytes": 348,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "marketplace",
+        "ask",
+        "ask_volume",
+        "mean",
+        "median",
+        "max_ask",
+        "suggested_price",
+        "premium",
+        "liquidity_score",
+        "volatility",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:28 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single_buff",
+      "url": "https://api.openskin.dev/v1/prices/buff?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:27.647830+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.184373,
+      "download_bytes": 201,
+      "error": null,
+      "body_sha256": "e2e070f539c9357379e0655144def0ba8eb94e655a3502eac6ad6eb9a8f393cf",
+      "saved_body_bytes": 201,
+      "decoded_bytes": 236,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "marketplace",
+        "ask",
+        "ask_volume",
+        "bid",
+        "bid_volume",
+        "currency",
+        "native_currency",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:28 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single_youpin",
+      "url": "https://api.openskin.dev/v1/prices/youpin?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:28.106188+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.183571,
+      "download_bytes": 198,
+      "error": null,
+      "body_sha256": "cafc6ce34f80d3b357175933486b2223c29fe43b7b086b19fcd05c4146a68587",
+      "saved_body_bytes": 198,
+      "decoded_bytes": 238,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "marketplace",
+        "ask",
+        "ask_volume",
+        "bid",
+        "bid_volume",
+        "currency",
+        "native_currency",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:29 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "single_csfloat",
+      "url": "https://api.openskin.dev/v1/prices/csfloat?item=AK-47+%7C+Redline+%28Field-Tested%29",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:28.562910+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.181676,
+      "download_bytes": 187,
+      "error": null,
+      "body_sha256": "ff637ddeca7c00f6e18f0761d552c802b54075c58de079420531076db4c23e99",
+      "saved_body_bytes": 187,
+      "decoded_bytes": 196,
+      "gzip_body": true,
+      "top_level_keys": [
+        "item",
+        "marketplace",
+        "ask",
+        "sell_order_count",
+        "highest_bid",
+        "bid_volume",
+        "currency",
+        "updated_at"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:29 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "batch",
+      "url": "https://api.openskin.dev/v1/prices/batch",
+      "method": "POST",
+      "requested_at_utc": "2026-10-29T03:39:29.046878+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 0.203571,
+      "download_bytes": 2562,
+      "error": null,
+      "body_sha256": "d83ed18eaf9f2159c0e4f4145c43f7811ce97cc16d41cf6470ee3794fc2b5680",
+      "saved_body_bytes": 2562,
+      "decoded_bytes": 21302,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "results",
+        "updated_at",
+        "count"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:30 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "content-encoding": "gzip"
+      }
+    },
+    {
+      "label": "missing_parameter",
+      "url": "https://api.openskin.dev/v1/prices",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:29.504148+00:00",
+      "curl_exit_code": 0,
+      "http_status": 400,
+      "elapsed_seconds": 0.182114,
+      "download_bytes": 44,
+      "error": null,
+      "body_sha256": "273540361c730109c875a205c7db1c4c9e6bbdaa11b6fa80a6921f998220add6",
+      "saved_body_bytes": 44,
+      "decoded_bytes": 44,
+      "gzip_body": false,
+      "top_level_keys": [
+        "error"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:30 GMT",
+        "content-type": "application/json; charset=utf-8"
+      }
+    },
+    {
+      "label": "unknown_item",
+      "url": "https://api.openskin.dev/v1/prices?item=__cs2_analytics_validation_nonexistent__",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:29.975244+00:00",
+      "curl_exit_code": 0,
+      "http_status": 404,
+      "elapsed_seconds": 0.190157,
+      "download_bytes": 26,
+      "error": null,
+      "body_sha256": "4c41093f6c6ae17533801bccb605e28d227a487113498b2fd37cc8cff5a8e090",
+      "saved_body_bytes": 26,
+      "decoded_bytes": 26,
+      "gzip_body": false,
+      "top_level_keys": [
+        "error"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:30 GMT",
+        "content-type": "application/json; charset=utf-8"
+      }
+    },
+    {
+      "label": "bulk",
+      "url": "https://api.openskin.dev/v1/prices/all",
+      "method": "GET",
+      "requested_at_utc": "2026-10-29T03:39:32.015726+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "elapsed_seconds": 1.74322,
+      "download_bytes": 6916678,
+      "error": null,
+      "body_sha256": "723e42a6ffe4cda140847cbcd589ceb87cfd79b5c27182dac5d4e6fae05946b2",
+      "saved_body_bytes": 6916678,
+      "decoded_bytes": 62982495,
+      "gzip_body": true,
+      "top_level_keys": [
+        "data",
+        "updated_at",
+        "count"
+      ],
+      "headers": {
+        "date": "Thu, 29 Oct 2026 03:39:31 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=300",
+        "content-encoding": "gzip"
+      }
+    }
+  ],
+  "health": {
+    "status": "up",
+    "sources": {
+      "buff": {
+        "updated_at": "2026-10-29T02:51:44.889771Z",
+        "status": "up"
+      },
+      "csfloat": {
+        "updated_at": "2026-10-29T03:05:32.817273Z",
+        "status": "up"
+      },
+      "skinport": {
+        "updated_at": "2026-10-29T03:33:30.959469Z",
+        "status": "up"
+      },
+      "steam": {
+        "updated_at": "2026-10-29T00:07:16.182885Z",
+        "status": "up"
+      },
+      "youpin": {
+        "updated_at": "2026-10-29T02:51:44.889771Z",
+        "status": "up"
+      }
+    },
+    "stats": {
+      "items": 38043
+    }
+  },
+  "spec_server_health": null,
+  "catalog_first_page": {
+    "page": 1,
+    "limit": 500,
+    "total": 38043
+  },
+  "catalog_field_profile": {
+    "exterior": {
+      "present": 461,
+      "str": 461
+    },
+    "icon_url": {
+      "present": 500,
+      "str": 500
+    },
+    "is_souvenir": {
+      "present": 500,
+      "bool": 500
+    },
+    "is_stattrak": {
+      "present": 500,
+      "bool": 500
+    },
+    "name": {
+      "present": 500,
+      "str": 500
+    },
+    "pattern": {
+      "present": 5,
+      "str": 5
+    },
+    "rarity": {
+      "present": 500,
+      "str": 500
+    },
+    "skin": {
+      "present": 465,
+      "str": 465
+    },
+    "type": {
+      "present": 500,
+      "str": 500
+    },
+    "weapon": {
+      "present": 500,
+      "str": 500
+    }
+  },
+  "catalog_last_page_count": 43,
+  "catalog_filter_totals": {
+    "stattrak": 5087,
+    "souvenir": 3137
+  },
+  "batch_returned_names": [
+    "AK-47 | Redline (Field-Tested)",
+    "Souvenir AWP | Dragon Lore (Factory New)",
+    "StatTrak™ AK-47 | Redline (Field-Tested)",
+    "★ Karambit | Doppler (Factory New)"
+  ],
+  "bulk": {
+    "reported_count": 38043,
+    "unique_names": 38043,
+    "count_matches": true,
+    "updated_at": "2026-10-29T03:37:40.485993915Z",
+    "markets": {
+      "steam": {
+        "object_present": 37354,
+        "positive_ask": 32750,
+        "positive_bid": 35302,
+        "ask_and_bid": 30698,
+        "missing_timestamp": 0,
+        "ask_coverage_pct": 86.09,
+        "currencies": {
+          "USD": 37354
+        },
+        "oldest_updated_at": "2026-06-19T21:01:07.576104Z",
+        "newest_updated_at": "2026-10-29T00:07:16.182885Z"
+      },
+      "skinport": {
+        "object_present": 24925,
+        "positive_ask": 24925,
+        "positive_bid": 0,
+        "ask_and_bid": 0,
+        "missing_timestamp": 0,
+        "ask_coverage_pct": 65.52,
+        "currencies": {
+          "USD": 24925
+        },
+        "oldest_updated_at": "2026-07-31T05:43:04.903483Z",
+        "newest_updated_at": "2026-10-29T03:33:30.959469Z"
+      },
+      "buff": {
+        "object_present": 25573,
+        "positive_ask": 24869,
+        "positive_bid": 17507,
+        "ask_and_bid": 17384,
+        "missing_timestamp": 0,
+        "ask_coverage_pct": 65.37,
+        "currencies": {
+          "USD": 25573
+        },
+        "oldest_updated_at": "2026-06-28T02:47:05.281775Z",
+        "newest_updated_at": "2026-10-29T02:51:44.889771Z"
+      },
+      "youpin": {
+        "object_present": 25485,
+        "positive_ask": 24660,
+        "positive_bid": 17386,
+        "ask_and_bid": 17287,
+        "missing_timestamp": 0,
+        "ask_coverage_pct": 64.82,
+        "currencies": {
+          "USD": 25485
+        },
+        "oldest_updated_at": "2026-06-27T18:24:56.922505Z",
+        "newest_updated_at": "2026-10-29T02:51:44.889771Z"
+      },
+      "csfloat": {
+        "object_present": 28482,
+        "positive_ask": 28302,
+        "positive_bid": 25664,
+        "ask_and_bid": 25499,
+        "missing_timestamp": 0,
+        "ask_coverage_pct": 74.39,
+        "currencies": {
+          "USD": 28482
+        },
+        "oldest_updated_at": "2026-07-01T06:07:54.438143Z",
+        "newest_updated_at": "2026-10-29T03:05:32.817273Z"
+      }
+    },
+    "variants": {
+      "stattrak": 5088,
+      "souvenir": 3532,
+      "regular": 29423,
+      "wear": {
+        "Factory New": 3657,
+        "Minimal Wear": 3631,
+        "Field-Tested": 3337,
+        "Well-Worn": 2996,
+        "Battle-Scarred": 2919
+      },
+      "no_wear_suffix": 21503
+    },
+    "field_profile": {
+      "buff": {
+        "present": 25573,
+        "dict": 25573
+      },
+      "buff.ask": {
+        "present": 25573,
+        "float": 24719,
+        "int": 594,
+        "NoneType": 260
+      },
+      "buff.ask_volume": {
+        "present": 25573,
+        "int": 25573
+      },
+      "buff.bid": {
+        "present": 25573,
+        "float": 17416,
+        "NoneType": 7420,
+        "int": 737
+      },
+      "buff.bid_volume": {
+        "present": 25573,
+        "int": 18156,
+        "NoneType": 7417
+      },
+      "buff.currency": {
+        "present": 25573,
+        "str": 25573
+      },
+      "buff.native_currency": {
+        "present": 25485,
+        "dict": 25485
+      },
+      "buff.native_currency.ask": {
+        "present": 25485,
+        "float": 19037,
+        "int": 6446,
+        "NoneType": 2
+      },
+      "buff.native_currency.bid": {
+        "present": 25485,
+        "int": 5558,
+        "float": 12152,
+        "NoneType": 7775
+      },
+      "buff.native_currency.code": {
+        "present": 25485,
+        "str": 25485
+      },
+      "buff.patterns": {
+        "present": 25573,
+        "NoneType": 25457,
+        "list": 116
+      },
+      "buff.updated_at": {
+        "present": 25573,
+        "str": 25573
+      },
+      "csfloat": {
+        "present": 28482,
+        "dict": 28482
+      },
+      "csfloat.ask": {
+        "present": 28482,
+        "float": 25513,
+        "int": 2789,
+        "NoneType": 180
+      },
+      "csfloat.base_price": {
+        "present": 28482,
+        "float": 25637,
+        "int": 2845
+      },
+      "csfloat.bid_volume": {
+        "present": 28482,
+        "int": 25684,
+        "NoneType": 2798
+      },
+      "csfloat.currency": {
+        "present": 28482,
+        "str": 28482
+      },
+      "csfloat.highest_bid": {
+        "present": 28482,
+        "float": 20678,
+        "int": 4986,
+        "NoneType": 2818
+      },
+      "csfloat.paint_seed": {
+        "present": 28482,
+        "NoneType": 28482
+      },
+      "csfloat.patterns": {
+        "present": 28482,
+        "NoneType": 28019,
+        "list": 463
+      },
+      "csfloat.sell_order_count": {
+        "present": 28482,
+        "int": 28482
+      },
+      "csfloat.updated_at": {
+        "present": 28482,
+        "str": 28482
+      },
+      "icon_url": {
+        "present": 36574,
+        "str": 36574
+      },
+      "links": {
+        "present": 38043,
+        "dict": 38043
+      },
+      "links.buff": {
+        "present": 38043,
+        "str": 38043
+      },
+      "links.csfloat": {
+        "present": 38043,
+        "str": 38043
+      },
+      "links.skinport": {
+        "present": 38043,
+        "str": 38043
+      },
+      "links.steam": {
+        "present": 38043,
+        "str": 38043
+      },
+      "links.youpin": {
+        "present": 38043,
+        "str": 38043
+      },
+      "lowest_ask": {
+        "present": 34008,
+        "dict": 34008
+      },
+      "lowest_ask.marketplace": {
+        "present": 34008,
+        "str": 34008
+      },
+      "lowest_ask.price": {
+        "present": 34008,
+        "float": 31927,
+        "int": 2081
+      },
+      "skinport": {
+        "present": 24925,
+        "dict": 24925
+      },
+      "skinport.ask": {
+        "present": 24925,
+        "float": 24736,
+        "int": 189
+      },
+      "skinport.ask_volume": {
+        "present": 24925,
+        "int": 24925
+      },
+      "skinport.currency": {
+        "present": 24925,
+        "str": 24925
+      },
+      "skinport.liquidity_score": {
+        "present": 23375,
+        "int": 23375
+      },
+      "skinport.max_ask": {
+        "present": 24925,
+        "float": 24759,
+        "int": 166
+      },
+      "skinport.mean": {
+        "present": 24925,
+        "float": 24744,
+        "int": 181
+      },
+      "skinport.median": {
+        "present": 24925,
+        "float": 24700,
+        "int": 225
+      },
+      "skinport.patterns": {
+        "present": 24925,
+        "NoneType": 24831,
+        "list": 94
+      },
+      "skinport.suggested_price": {
+        "present": 24925,
+        "float": 24744,
+        "int": 178,
+        "NoneType": 3
+      },
+      "skinport.updated_at": {
+        "present": 24925,
+        "str": 24925
+      },
+      "steam": {
+        "present": 37354,
+        "dict": 37354
+      },
+      "steam.ask": {
+        "present": 37354,
+        "float": 31346,
+        "int": 1404,
+        "NoneType": 4604
+      },
+      "steam.bid": {
+        "present": 37354,
+        "float": 34156,
+        "int": 1146,
+        "NoneType": 2052
+      },
+      "steam.buy_order_count": {
+        "present": 37354,
+        "int": 37352,
+        "NoneType": 2
+      },
+      "steam.currency": {
+        "present": 37354,
+        "str": 37354
+      },
+      "steam.liquidity_score": {
+        "present": 28015,
+        "int": 28015
+      },
+      "steam.median": {
+        "present": 37354,
+        "float": 32049,
+        "int": 877,
+        "NoneType": 4428
+      },
+      "steam.sell_order_count": {
+        "present": 37354,
+        "int": 37354
+      },
+      "steam.updated_at": {
+        "present": 37354,
+        "str": 37354
+      },
+      "steam.volume_24h": {
+        "present": 37354,
+        "int": 32926,
+        "NoneType": 4428
+      },
+      "updated_at": {
+        "present": 37498,
+        "str": 37498
+      },
+      "youpin": {
+        "present": 25485,
+        "dict": 25485
+      },
+      "youpin.ask": {
+        "present": 25485,
+        "float": 24487,
+        "int": 706,
+        "NoneType": 292
+      },
+      "youpin.ask_volume": {
+        "present": 25485,
+        "int": 25485
+      },
+      "youpin.bid": {
+        "present": 25485,
+        "float": 17280,
+        "NoneType": 7297,
+        "int": 908
+      },
+      "youpin.bid_volume": {
+        "present": 25485,
+        "int": 18188,
+        "NoneType": 7297
+      },
+      "youpin.currency": {
+        "present": 25485,
+        "str": 25485
+      },
+      "youpin.native_currency": {
+        "present": 25322,
+        "dict": 25322
+      },
+      "youpin.native_currency.ask": {
+        "present": 25322,
+        "int": 6371,
+        "float": 18951
+      },
+      "youpin.native_currency.bid": {
+        "present": 25322,
+        "int": 5542,
+        "float": 12178,
+        "NoneType": 7602
+      },
+      "youpin.native_currency.code": {
+        "present": 25322,
+        "str": 25322
+      },
+      "youpin.patterns": {
+        "present": 25485,
+        "NoneType": 25485
+      },
+      "youpin.updated_at": {
+        "present": 25485,
+        "str": 25485
+      }
+    }
+  },
+  "sample_names_in_bulk": {
+    "AK-47 | Redline (Field-Tested)": true,
+    "StatTrak™ AK-47 | Redline (Field-Tested)": true,
+    "Souvenir AWP | Dragon Lore (Factory New)": true,
+    "★ Karambit | Doppler (Factory New)": true
+  },
+  "catalog_total_matches_bulk": true,
+  "run_completed": true,
+  "finished_at_utc": "2026-10-29T03:39:34.741725+00:00",
+  "offline_verification": "Raw bulk reprofiled; 16 endpoint results, batch sample names and catalog/bulk totals checked successfully.",
+  "catalog_scope": "First 500 and last 43 metadata records sampled; intermediate catalog pages not downloaded. Filter totals are upstream reported counts.",
+  "variant_caveat": "bulk.variants uses names, not metadata flags. Souvenir discrepancy unresolved; do not use name-derived categories as authoritative metadata."
+}

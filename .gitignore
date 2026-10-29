@@ -1,0 +1,15 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+.aws/
+credentials
+
+data/raw/
+*.parquet
+*.csv
+
+.vscode/
+.idea/
