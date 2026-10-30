@@ -7,15 +7,19 @@ OpenSkin API, and AWS.
 
 ## Architecture
 - Hourly ingestion: EventBridge + Lambda
-- Storage: S3 Bronze / Silver / Gold
-- ETL: Python, later AWS Glue
-- Queries: Athena SQL
-- Dashboard: Streamlit
-- Monitoring: CloudWatch
+- Raw storage: Amazon S3 Bronze (immutable JSON, replay and backfill)
+- Analytical storage: PostgreSQL staging / core / marts
+- ETL: Python validation/loading + dbt SQL transformations and tests
+- Orchestration: Apache Airflow ETL and historical backfill DAGs
+- Queries: Read-only, parameterized SQL tools over PostgreSQL
+- Serving: Streamlit + AI Agent/RAG (SQL for prices; RAG for documentation)
+- Monitoring: CloudWatch + SNS, Airflow/dbt checks, PostgreSQL statistics
+- Deployment: Local Docker first; evaluate managed hosting and costs before AWS approval
 
 ## Scope
-- V1: Complete data ingestion and basic queries
-- V2: Advanced queries and historical analytics
+- V1: Ingestion, historical backfill, PostgreSQL five-table model, Python/dbt,
+  Airflow, monitoring, Streamlit, read-only SQL tools and AI Agent/RAG
+- V2: Historical analytics, market rankings, dashboard and AI tool/alert enhancements
 - V3: Liquidity analysis and price forecasting
 - Preserve all supported item variants
 - Do not analyze individual Float or Pattern
@@ -23,6 +27,8 @@ OpenSkin API, and AWS.
 
 ## Before Starting Any Task
 1. Read root STATUS.md and docs/ROADMAP.md.
+   Consult docs/project proposal.docx for design changes and docs/DECISIONS.md
+   for adopted decisions; distinguish proposed components from verified implementation.
 2. Inspect relevant existing code.
 3. Explain the proposed changes before implementation.
 4. Keep changes limited to the requested task.
@@ -34,6 +40,12 @@ OpenSkin API, and AWS.
 - Do not deploy AWS resources without approval.
 - Avoid unnecessary AWS costs.
 - Do not claim tests passed unless executed.
+- Preserve source timestamps, collection timestamps and raw batch lineage.
+- Make replay/backfill idempotent and handle late data and source corrections.
+- AI must use bounded read-only SQL tools for prices; RAG retrieves schema and
+  metric documentation. Do not treat retrieved prose as current market prices.
+- Use read-only database permissions, parameterized/allowlisted queries,
+  timeouts and row limits for dashboard/AI tools; verify answers against query results.
 
 ## After Completing a Task
 1. Run available relevant tests.

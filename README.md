@@ -13,7 +13,8 @@ multi-market price comparison and historical analytics.
 
 The platform will collect market data hourly and provide
 insights into item prices, market trends, volatility,
-liquidity, and potential future price movements.
+liquidity, and potential future price movements. Streamlit and an AI Agent/RAG
+interface will share bounded, read-only SQL tools over curated PostgreSQL data.
 
 This project is developed as a Data Engineering portfolio
 project, with a focus on reliable data pipelines, cloud
@@ -25,6 +26,10 @@ architecture, data modeling, and analytical processing.
 
 **Status:** Local OpenSkin API validation completed on 2026-10-28; ingestion implementation pending.
 
+The target design was aligned with the revised
+[project proposal](docs/project%20proposal.docx) on 2026-10-30. PostgreSQL,
+Python/dbt, Airflow and AI query components below are planned, not implemented.
+
 See [STATUS.md](STATUS.md) for current development progress.
 
 ## Planned Features
@@ -33,24 +38,26 @@ See [STATUS.md](STATUS.md) for current development progress.
 
 - [ ] OpenSkin API integration
 - [ ] Hourly automated data collection
-- [ ] Historical data ingestion
-- [ ] Amazon S3 raw data storage
-- [ ] Basic data cleaning and transformation
-- [ ] Parquet historical datasets
-- [ ] Basic Amazon Athena queries
-- [ ] Streamlit item search
-- [ ] Cross-market price comparison
-- [ ] Basic pipeline monitoring
+- [ ] Historical backfill with checkpoints, retries and idempotent recovery
+- [ ] Amazon S3 Bronze raw JSON storage and replay
+- [ ] PostgreSQL staging and five core business tables with keys and indexes
+- [ ] Python JSON validation, field mapping and batch loading
+- [ ] dbt cleaning, deduplication, incremental models and daily aggregation
+- [ ] Airflow ETL/backfill DAGs, dependencies, retries and publish checks
+- [ ] Data quality, source freshness, CloudWatch logs and SNS email alerts
+- [ ] Streamlit item search, cross-market prices and historical queries
+- [ ] Shared read-only SQL tools with bounded queries
+- [ ] AI Agent tool calling and RAG for schema/metric documentation
+- [ ] Local integration testing and approval-gated AWS deployment
 
 ### V2 — Advanced Query & Market Analytics
 
-- [ ] AWS Glue ETL pipeline
-- [ ] Advanced data quality validation
 - [ ] Historical price analysis
-- [ ] Price change and volatility calculations
-- [ ] Multi-market price comparisons
-- [ ] Price movement rankings
+- [ ] Price changes, moving averages and volatility
+- [ ] Cross-market spreads, lowest-price and price-movement rankings
 - [ ] Advanced interactive dashboard
+- [ ] AI tool/MCP integration, price thresholds and proactive notifications
+- [ ] PostgreSQL query/index optimization and additional validation
 
 ### V3 — Predictive Analytics & Market Intelligence
 
@@ -96,19 +103,25 @@ The project does not support automated trading.
 | Data Source | OpenSkin REST API |
 | Scheduling | Amazon EventBridge |
 | Data Ingestion | AWS Lambda |
-| Cloud Storage | Amazon S3 |
-| Data Processing | Python, Pandas, PySpark |
-| ETL | AWS Glue |
-| Data Format | JSON, Parquet |
-| Data Catalog | AWS Glue Data Catalog |
-| SQL Analytics | Amazon Athena |
+| Raw Storage | Amazon S3 Bronze |
+| Analytical Database | PostgreSQL staging / core / marts |
+| Data Loading | Python validation and batch loading |
+| SQL Transformation | dbt incremental models and tests |
+| Workflow Orchestration | Apache Airflow |
+| Raw Data Format | JSON (gzip where appropriate) |
+| Query Interface | Parameterized, read-only SQL tools |
 | Dashboard | Streamlit, Plotly |
-| Monitoring | Amazon CloudWatch |
+| AI Interface | LLM tool calling + RAG for documentation |
+| Local Environment | Docker for PostgreSQL and Airflow |
+| Monitoring | CloudWatch, SNS, Airflow/dbt, PostgreSQL statistics |
 | Cost Monitoring | AWS Budgets |
 | Version Control | Git |
 
 Services listed above represent the target architecture.
-Not all components are implemented in V1.
+Only the local API validation script is implemented so far. Glue, Athena,
+Redshift and Parquet are no longer baseline delivery requirements in the revised
+proposal. Managed PostgreSQL/Airflow hosting and the LLM/retrieval stack remain
+to be selected after evaluating operational needs and costs.
 
 ## Target System Architecture
 
@@ -116,59 +129,87 @@ The planned data flow is:
 
 ```text
 OpenSkin API
-      |
-EventBridge + AWS Lambda
-      |
-Amazon S3
-      |
-      +-- Bronze: Raw API Data
-      |
-      +-- Silver: Cleaned Historical Data
-      |
-      +-- Gold: Analytical Data
-      |
-AWS Glue + Athena
-      |
-Python Analytics
-      |
-Streamlit Dashboard
+  |-- EventBridge -> Lambda / Python hourly collector ----+
+  |-- Airflow Backfill DAG -> Python historical worker ---+
+                                                         |
+                                                 S3 Bronze Raw JSON
+                                                         |
+Airflow ETL DAG: check batch -> Python validate / bulk load
+                                                         |
+                                                 PostgreSQL staging
+                                                         |
+                                                   dbt build / tests
+                                                         |
+                                              PostgreSQL core / marts
+                                                         |
+                                               Read-only SQL tools
+                                                  /             \
+                                             Streamlit       AI Agent
+                                                                 |
+                                                    RAG schema / metric docs
 ```
 
-Hourly lightweight processing will maintain the latest
-price dataset for fast dashboard access.
+Hourly collection remains independent of Airflow ETL and controlled historical
+backfill runs. Airflow manages downstream task dependencies, retries, dbt checks
+and publication; a delayed backfill must not block current-price collection.
+Both historical API backfill and replay of saved S3 batches must support checkpoints
+and idempotent reprocessing. Exact ETL schedules remain to be configured.
 
-Daily processing will transform historical data and
-generate analytical datasets.
-
-The project will use S3 and Athena rather than a
-dedicated database server during initial development.
+PostgreSQL serves both dashboard and AI queries. RAG retrieves the data dictionary
+and metric definitions; numerical price answers must come from SQL results.
+Start with local Docker for PostgreSQL/Airflow; evaluate managed AWS hosting
+separately. No AWS deployment is authorized by this design update.
 
 ## Data Architecture
 
-### Bronze Layer
+### Bronze Raw Storage
 
-Stores raw API responses and hourly historical snapshots.
+S3 stores immutable raw JSON snapshots, historical backfill responses and collection
+metadata. Retain source timestamps, UTC observation times and batch/S3 lineage so
+data can be audited and replayed. S3 key layout and retention remain to be designed.
 
-### Silver Layer
+### PostgreSQL Staging and Curated Models
 
-Stores cleaned and normalized marketplace data in
-Parquet format.
+Python validates JSON and batch-loads structured records into staging. dbt handles
+cleaning, deduplication, incremental transformations, relationships and aggregates.
+The revised proposal defines five core business tables (staging and operational
+batch/checkpoint records are separate):
 
-### Gold Layer
+| Table | Planned grain and purpose |
+|---|---|
+| `dim_item` | One unique item variant; unique `market_hash_name`, wear and variant metadata |
+| `dim_market` | One marketplace; unique market code and expected refresh interval |
+| `fact_price_history` | Item/market price change or valid observation, with source/observation timestamps, raw S3 key and deduplication key |
+| `price_latest` | Latest valid quote per item/market; composite key `(item_id, market_id)` |
+| `agg_price_daily` | Daily item/market metrics; composite key `(item_id, market_id, price_date)` |
 
-Stores precomputed analytical results, including:
-- Latest prices
+History references the item and market dimensions. Latest/daily models derive from
+validated history. Preserve original currency amounts alongside normalized USD
+where available, without treating a missing quote as zero.
+
+### Analytical Outputs and Open Modeling Questions
+
+Curated PostgreSQL models provide latest prices and daily aggregates in V1.
+Later versions add:
 - Historical trends
 - Market comparisons
 - Price movement rankings
 - Liquidity indicators
 - Forecasting results
 
+Before implementing SQL models, define the canonical quote type (ask/bid/median),
+change-versus-observation history semantics, timestamp-based deduplication and
+source corrections. Also define day boundaries, gap handling and daily averaging
+so a simple average of change events is not presented as a time-weighted daily price.
+Resolve these with API evidence before finalizing schema constraints.
+
 ## Update Frequency
 
 - Market price collection: Every hour
 - Item metadata synchronization: Periodic
-- Historical ETL: Daily (V2)
+- Current-price ETL: Airflow-controlled after raw batch availability (V1)
+- Historical backfill: Separate controlled Airflow runs with checkpoints (V1)
+- Daily aggregation: dbt/Airflow models (V1; execution schedule to be configured)
 - Advanced analytics: Daily or as needed
 - Model training: Periodic (V3)
 
@@ -197,30 +238,38 @@ It does not create or deploy AWS resources.
 python -m unittest discover -s test -v
 ```
 
-Six offline tests passed on 2026-10-28. A separate live discovery run and offline
+Six offline tests passed again on 2026-10-30. A separate live discovery run and offline
 raw-snapshot verification are documented in the API validation report.
 
 ## Development Roadmap
 
 | Version | Focus | Estimated Effort |
 |---|---|---|
-| V1 | Data Ingestion & Basic Query | 41 hours |
-| V2 | Advanced Query & Analytics | +32 hours |
-| V3 | Predictive Analytics | +32 hours |
+| V1 | Ingestion, PostgreSQL/dbt/Airflow, dashboard and AI query | 84 hours |
+| V2 | Historical/market analytics, dashboard and AI enhancements | +36 hours |
+| V3 | Liquidity, anomalies and forecasting | +38 hours |
 
-**Total Estimated Effort:** 105 hours
+**Total Estimated Effort:** 158 hours
 
-These estimates exclude additional contingency time.
+These are the revised proposal's planning estimates, not recorded time spent.
+See [docs/ROADMAP.md](docs/ROADMAP.md) for the component breakdown and sequencing.
 
 ## Monitoring
 
 Planned monitoring includes:
-- API request failures
-- Data collection failures
-- Data freshness
-- Data quality issues
-- ETL job status
-- AWS cost alerts
+- CloudWatch ingestion metrics: API success, record counts, raw object creation
+  and last successful collection; SNS email if no collection succeeds for 90 minutes.
+- Python/dbt quality checks: nulls, duplicates, valid prices, keys and completeness;
+  isolate invalid data or block publication on failed checks.
+- Airflow DAG/task duration, retries, failures and S3 replay/backfill recovery.
+- Market-specific source freshness, `price_latest` freshness and aggregate completeness.
+- PostgreSQL size, connections, slow queries, query latency and history growth.
+- AWS Budgets email thresholds at 50%, 80% and 100% of a monthly budget still to
+  be chosen; evaluate persistent database/Airflow costs and S3 retention.
+
+Dashboard and AI tools must use read-only database permissions, parameterized or
+allowlisted SQL, timeouts and row limits. Check AI answers against query outputs.
+Notifications and LLM integrations are planned; no recipients or providers are configured.
 
 ## Data Usage
 
@@ -238,6 +287,7 @@ not guarantee future trading outcomes.
 ## Documentation
 
 - [AGENTS.md](AGENTS.md): Codex development instructions
+- [docs/project proposal.docx](docs/project%20proposal.docx): Revised design and planning source
 - [STATUS.md](STATUS.md): Current development progress
 - [docs/ROADMAP.md](docs/ROADMAP.md): V1/V2/V3 implementation roadmap
 - [docs/OPEN_SKIN_API_VALIDATION.md](docs/OPEN_SKIN_API_VALIDATION.md): Local API findings
