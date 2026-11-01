@@ -1,6 +1,6 @@
 # Project Status
 
-Last verified: 2026-10-30 (America/Los_Angeles).
+Last verified: 2026-10-31 (America/Los_Angeles).
 
 ## Current phase
 
@@ -13,6 +13,13 @@ the architecture change does not represent additional implemented functionality.
 
 ## Verified progress
 
+- Rechecked the live item count on 2026-10-31 at 19:24 PDT
+  (2026-11-01 02:24 UTC). /health, /v1/items?limit=1&page=1 and
+  /v1/prices/all each returned HTTP 200. Health items, catalog total, bulk count
+  and actual unique bulk names all equal 38,043, unchanged from 2026-10-28.
+  Count equality assertions passed; health status was up. Raw responses and
+  count_report.json are saved locally under
+  data/raw/openskin/20261101T022436Z_count_recheck/ (Git ignored).
 - Reviewed the revised proposal's text, tables and both architecture/data-model
   diagrams on 2026-10-30, and compared its text with the committed prior version.
   Aligned README.md, AGENTS.md, docs/ROADMAP.md and docs/DECISIONS.md. V1/V2/V3
